@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum RecipeVisibility {
+  PRIVATE
+  PUBLIC
+}
+
+enum IngredientKind {
+  INGREDIENT
+  SEASONING
+}
+
+model User {
+  id        String   @id @default(cuid())
+  nickname  String?
+  avatarUrl String?
+  recipes   Recipe[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Recipe {
+  id             String           @id @default(cuid())
+  authorId       String
+  title          String
+  servings       Int
+  visibility     RecipeVisibility @default(PRIVATE)
+  coverImageUrl  String?
+  estimatedKcal  Decimal?         @db.Decimal(10, 2)
+  author         User             @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  ingredients    RecipeIngredient[]
+  steps          RecipeStep[]
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+}
+
+model RecipeIngredient {
+  id          String         @id @default(cuid())
+  recipeId    String
+  name        String
+  amount      Decimal?       @db.Decimal(10, 2)
+  unit        String?
+  originalText String?
+  kind        IngredientKind @default(INGREDIENT)
+  recipe      Recipe         @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+}
+
+model RecipeStep {
+  id          String @id @default(cuid())
+  recipeId    String
+  order       Int
+  instruction String
+  timerSeconds Int?
+  recipe      Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+
+  @@unique([recipeId, order])
+}

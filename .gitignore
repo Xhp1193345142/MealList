@@ -1,0 +1,15 @@
+node_modules/
+.pnpm-store/
+dist/
+.turbo/
+.DS_Store
+.env
+.env.development
+.env.preview
+.env.production.local
+!.env.example
+coverage/
+*.log
+apps/miniprogram/dist/
+apps/miniprogram/.swc/
+apps/api/prisma/dev.db

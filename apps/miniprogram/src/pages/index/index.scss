@@ -1,0 +1,36 @@
+.page {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 120rpx 48rpx;
+}
+
+.eyebrow {
+  display: block;
+  color: #d96c3d;
+  font-size: 28rpx;
+  font-weight: 700;
+  letter-spacing: 2rpx;
+}
+
+.title {
+  display: block;
+  margin-top: 24rpx;
+  font-size: 60rpx;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.description {
+  display: block;
+  margin-top: 32rpx;
+  color: #657067;
+  font-size: 30rpx;
+  line-height: 1.6;
+}
+
+.primary-button {
+  margin-top: 72rpx;
+  border-radius: 24rpx;
+  background: #d96c3d;
+  color: #fff;
+}
