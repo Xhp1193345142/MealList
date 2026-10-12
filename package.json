@@ -5,6 +5,7 @@
   "description": "MealList — 从菜谱到开饭，一张清单搞定。",
   "packageManager": "pnpm@11.9.0",
   "scripts": {
+    "dev:app": "pnpm --filter @meallist/app start",
     "dev:api": "pnpm --filter @meallist/api start:dev",
     "dev:mini": "pnpm --filter @meallist/miniprogram dev:weapp",
     "build": "pnpm -r build",
